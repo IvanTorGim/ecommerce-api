@@ -1,12 +1,9 @@
-package com.itortosagimeno.ecommerce_api.models.mappers;
-
-import com.itortosagimeno.ecommerce_api.models.dtos.ProductDTO;
-import com.itortosagimeno.ecommerce_api.models.entities.ProductEntity;
+package com.itortosagimeno.ecommerce_api.product.model;
 
 public class ProductMapper {
 
-    public static ProductDTO toDTO(ProductEntity entity){
-        return ProductDTO.builder()
+    public static ProductResponseDTO toDTO(ProductEntity entity) {
+        return ProductResponseDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
@@ -17,7 +14,7 @@ public class ProductMapper {
                 .build();
     }
 
-    public static ProductEntity toEntity(ProductDTO dto){
+    public static ProductEntity toEntity(ProductRequestDTO dto) {
         ProductEntity entity = new ProductEntity();
         entity.setName(dto.name());
         entity.setDescription(dto.description());
@@ -28,7 +25,7 @@ public class ProductMapper {
         return entity;
     }
 
-    public static ProductEntity toEntityWithId(Integer id, ProductDTO dto){
+    public static ProductEntity toEntityWithId(Integer id, ProductRequestDTO dto) {
         ProductEntity entity = new ProductEntity();
         entity.setId(id);
         entity.setName(dto.name());

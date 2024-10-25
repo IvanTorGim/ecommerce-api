@@ -1,9 +1,10 @@
-package com.itortosagimeno.ecommerce_api.services;
+package com.itortosagimeno.ecommerce_api.product.service;
 
-import com.itortosagimeno.ecommerce_api.exceptions.ProductNotFoundException;
-import com.itortosagimeno.ecommerce_api.models.dtos.ProductDTO;
-import com.itortosagimeno.ecommerce_api.models.mappers.ProductMapper;
-import com.itortosagimeno.ecommerce_api.repositories.ProductRepository;
+import com.itortosagimeno.ecommerce_api.exception.ProductNotFoundException;
+import com.itortosagimeno.ecommerce_api.product.model.ProductMapper;
+import com.itortosagimeno.ecommerce_api.product.model.ProductRequestDTO;
+import com.itortosagimeno.ecommerce_api.product.model.ProductResponseDTO;
+import com.itortosagimeno.ecommerce_api.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,28 +20,28 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductDTO> getAllProducts() {
+    public List<ProductResponseDTO> getAllProducts() {
         return productRepository.findAll().stream()
                 .map(ProductMapper::toDTO)
                 .toList();
     }
 
     @Override
-    public ProductDTO getProductById(final Integer id) throws ProductNotFoundException {
+    public ProductResponseDTO getProductById(final Integer id) throws ProductNotFoundException {
         return productRepository.findById(id)
                 .map(ProductMapper::toDTO)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @Override
-    public ProductDTO insertProduct(final ProductDTO productDTO) {
+    public ProductResponseDTO insertProduct(final ProductRequestDTO productDTO) {
         final var entity = ProductMapper.toEntity(productDTO);
         final var saved = productRepository.save(entity);
         return ProductMapper.toDTO(saved);
     }
 
     @Override
-    public ProductDTO updateProduct(final Integer id, final ProductDTO productDTO) throws ProductNotFoundException {
+    public ProductResponseDTO updateProduct(final Integer id, final ProductRequestDTO productDTO) throws ProductNotFoundException {
         final var exists = productRepository.existsById(id);
         if (!exists) throw new ProductNotFoundException(id);
         final var entityMapped = ProductMapper.toEntityWithId(id, productDTO);

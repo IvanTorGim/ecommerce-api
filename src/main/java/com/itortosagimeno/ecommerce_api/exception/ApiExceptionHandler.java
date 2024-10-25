@@ -1,4 +1,4 @@
-package com.itortosagimeno.ecommerce_api.exceptions;
+package com.itortosagimeno.ecommerce_api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

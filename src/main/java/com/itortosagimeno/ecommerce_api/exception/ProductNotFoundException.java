@@ -1,4 +1,4 @@
-package com.itortosagimeno.ecommerce_api.exceptions;
+package com.itortosagimeno.ecommerce_api.exception;
 
 public class ProductNotFoundException extends Exception {
     public ProductNotFoundException(Integer id) {

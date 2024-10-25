@@ -1,6 +1,5 @@
-package com.itortosagimeno.ecommerce_api.models.entities;
+package com.itortosagimeno.ecommerce_api.product.model;
 
-import com.itortosagimeno.ecommerce_api.models.enums.Category;
 import jakarta.persistence.*;
 
 import java.util.Objects;

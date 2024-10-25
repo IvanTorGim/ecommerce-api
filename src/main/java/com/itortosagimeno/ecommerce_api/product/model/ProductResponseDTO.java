@@ -1,22 +1,13 @@
-package com.itortosagimeno.ecommerce_api.models.dtos;
+package com.itortosagimeno.ecommerce_api.product.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.itortosagimeno.ecommerce_api.models.enums.Category;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
-import jakarta.validation.constraints.PositiveOrZero;
-
-import static com.fasterxml.jackson.annotation.JsonFormat.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES;
-
-public record ProductDTO(
-        @Null Integer id,
-        @NotNull @NotBlank String name,
-        @NotNull String description,
-        @NotNull @PositiveOrZero Double price,
-        @NotNull @JsonFormat(with = ACCEPT_CASE_INSENSITIVE_PROPERTIES) Category category,
-        @NotNull String image,
-        @NotNull @PositiveOrZero Integer stock
+public record ProductResponseDTO(
+        Integer id,
+        String name,
+        String description,
+        Double price,
+        Category category,
+        String image,
+        Integer stock
 ) {
     public static ProductDTOBuilder builder() {
         return new ProductDTOBuilder();
@@ -69,8 +60,8 @@ public record ProductDTO(
             return this;
         }
 
-        public ProductDTO build() {
-            return new ProductDTO(id, name, description, price, category, image, stock);
+        public ProductResponseDTO build() {
+            return new ProductResponseDTO(id, name, description, price, category, image, stock);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.itortosagimeno.ecommerce_api.exceptions;
+package com.itortosagimeno.ecommerce_api.exception;
 
 import java.time.LocalDateTime;
 
