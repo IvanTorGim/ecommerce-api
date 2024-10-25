@@ -2,7 +2,6 @@ package com.itortosagimeno.ecommerce_api.services;
 
 import com.itortosagimeno.ecommerce_api.exceptions.ProductNotFoundException;
 import com.itortosagimeno.ecommerce_api.models.dtos.ProductDTO;
-import com.itortosagimeno.ecommerce_api.models.entities.ProductEntity;
 import com.itortosagimeno.ecommerce_api.models.mappers.ProductMapper;
 import com.itortosagimeno.ecommerce_api.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -34,24 +33,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO insertProduct(ProductDTO productDTO) {
-        ProductEntity entity = ProductMapper.toEntity(productDTO);
-        ProductEntity saved = productRepository.save(entity);
+    public ProductDTO insertProduct(final ProductDTO productDTO) {
+        final var entity = ProductMapper.toEntity(productDTO);
+        final var saved = productRepository.save(entity);
         return ProductMapper.toDTO(saved);
     }
 
     @Override
-    public ProductDTO updateProduct(Integer id, ProductDTO productDTO) throws ProductNotFoundException {
-        boolean exists = productRepository.existsById(id);
-        if(!exists) throw new ProductNotFoundException(id);
-        ProductEntity entityMapped = ProductMapper.toEntityWithId(id, productDTO);
-        ProductEntity saved = productRepository.save(entityMapped);
+    public ProductDTO updateProduct(final Integer id, final ProductDTO productDTO) throws ProductNotFoundException {
+        final var exists = productRepository.existsById(id);
+        if (!exists) throw new ProductNotFoundException(id);
+        final var entityMapped = ProductMapper.toEntityWithId(id, productDTO);
+        final var saved = productRepository.save(entityMapped);
         return ProductMapper.toDTO(saved);
     }
 
     @Override
-    public void deleteProduct(Integer id) throws ProductNotFoundException {
-        boolean exists = productRepository.existsById(id);
+    public void deleteProduct(final Integer id) throws ProductNotFoundException {
+        var exists = productRepository.existsById(id);
         if (!exists) throw new ProductNotFoundException(id);
         productRepository.deleteById(id);
     }

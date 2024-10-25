@@ -37,7 +37,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> insertProduct(@Valid @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> insertProduct(
+            @Valid @RequestBody final ProductDTO productDTO
+    ) {
         final ProductDTO product = productService.insertProduct(productDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -47,7 +49,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> updateProduct(
             @PathVariable final Integer id,
-            @Valid @RequestBody ProductDTO productDTO
+            @Valid @RequestBody final ProductDTO productDTO
     ) throws ProductNotFoundException {
         final ProductDTO product = productService.updateProduct(id, productDTO);
         return ResponseEntity
@@ -56,8 +58,8 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(
-            @PathVariable Integer id
-    ) throws ProductNotFoundException{
+            @PathVariable final Integer id
+    ) throws ProductNotFoundException {
         productService.deleteProduct(id);
         return ResponseEntity
                 .noContent()
