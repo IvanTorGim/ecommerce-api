@@ -3,6 +3,8 @@ package com.itortosagimeno.ecommerce_api.models.entities;
 import com.itortosagimeno.ecommerce_api.models.enums.Category;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity()
 @Table(name = "products")
 public class ProductEntity {
@@ -78,5 +80,31 @@ public class ProductEntity {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductEntity entity = (ProductEntity) o;
+        return Objects.equals(id, entity.id) && Objects.equals(name, entity.name) && Objects.equals(description, entity.description) && Objects.equals(price, entity.price) && Objects.equals(image, entity.image) && Objects.equals(stock, entity.stock) && category == entity.category;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, price, image, stock, category);
+    }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", stock=" + stock +
+                ", category=" + category +
+                '}';
     }
 }
