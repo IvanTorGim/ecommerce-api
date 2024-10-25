@@ -6,15 +6,15 @@ import com.itortosagimeno.ecommerce_api.models.entities.ProductEntity;
 public class ProductMapper {
 
     public static ProductDTO toDTO(ProductEntity entity){
-        return new ProductDTO(
-                entity.getId(),
-                entity.getName(),
-                entity.getDescription(),
-                entity.getPrice(),
-                entity.getCategory(),
-                entity.getImage(),
-                entity.getStock()
-        );
+        return ProductDTO.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .price(entity.getPrice())
+                .category(entity.getCategory())
+                .image(entity.getImage())
+                .stock(entity.getStock())
+                .build();
     }
 
     public static ProductEntity toEntity(ProductDTO dto){

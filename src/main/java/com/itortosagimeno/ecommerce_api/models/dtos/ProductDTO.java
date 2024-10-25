@@ -15,4 +15,59 @@ public record ProductDTO(
         @NotNull String image,
         @NotNull @PositiveOrZero Integer stock
 ) {
+    public static ProductDTOBuilder builder() {
+        return new ProductDTOBuilder();
+    }
+
+    public static class ProductDTOBuilder {
+        private Integer id;
+        private String name;
+        private String description;
+        private Double price;
+        private Category category;
+        private String image;
+        private Integer stock;
+
+        public ProductDTOBuilder() {
+        }
+
+        public ProductDTOBuilder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public ProductDTOBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ProductDTOBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public ProductDTOBuilder price(Double price) {
+            this.price = price;
+            return this;
+        }
+
+        public ProductDTOBuilder category(Category category) {
+            this.category = category;
+            return this;
+        }
+
+        public ProductDTOBuilder image(String image) {
+            this.image = image;
+            return this;
+        }
+
+        public ProductDTOBuilder stock(Integer stock) {
+            this.stock = stock;
+            return this;
+        }
+
+        public ProductDTO build() {
+            return new ProductDTO(id, name, description, price, category, image, stock);
+        }
+    }
 }
