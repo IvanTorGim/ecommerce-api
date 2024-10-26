@@ -11,13 +11,28 @@ import java.time.LocalDateTime;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException exception) {
-        ApiException apiException = ApiException.builder()
+    public ResponseEntity<ApiException> handleProductNotFoundException(ProductNotFoundException e) {
+        final var apiException = ApiException.builder()
                 .error(HttpStatus.NOT_FOUND.getReasonPhrase())
-                .message(exception.getMessage())
+                .message(e.getMessage())
                 .status(HttpStatus.NOT_FOUND.value())
                 .time(LocalDateTime.now())
                 .build();
-        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(apiException);
+    }
+
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ApiException> handleUserException(UserException e) {
+        final var apiException = ApiException.builder()
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                .message(e.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .time(LocalDateTime.now())
+                .build();
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(apiException);
     }
 }
