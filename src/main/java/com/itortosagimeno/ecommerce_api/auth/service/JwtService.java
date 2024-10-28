@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.auth.service;
 
-import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequestDTO;
+import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -31,7 +31,7 @@ public class JwtService {
                 .getPayload();
     }
 
-    public String generateToken(final RegisterRequestDTO request) {
+    public String generateToken(final RegisterRequest request) {
         return Jwts.builder()
                 .claims(Map.of("name", request.name(), "role", request.role()))
                 .subject(request.email())

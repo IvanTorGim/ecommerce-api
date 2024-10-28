@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.auth.controller;
 
-import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequestDTO;
+import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequest;
 import com.itortosagimeno.ecommerce_api.auth.model.TokenResponse;
 import com.itortosagimeno.ecommerce_api.auth.service.AuthService;
 import com.itortosagimeno.ecommerce_api.exception.UserException;
@@ -22,9 +22,9 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<TokenResponse> register(
-            @Valid @RequestBody final RegisterRequestDTO registerRequestDTO
+            @Valid @RequestBody final RegisterRequest registerRequest
     ) throws UserException {
-        final var token = authenticationService.register(registerRequestDTO);
+        final var token = authenticationService.register(registerRequest);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(token);

@@ -1,8 +1,8 @@
 package com.itortosagimeno.ecommerce_api.product.controller;
 
 import com.itortosagimeno.ecommerce_api.exception.ProductNotFoundException;
-import com.itortosagimeno.ecommerce_api.product.model.ProductRequestDTO;
-import com.itortosagimeno.ecommerce_api.product.model.ProductResponseDTO;
+import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
+import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
 import com.itortosagimeno.ecommerce_api.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +19,14 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/public/products")
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
         final var products = productService.getAllProducts();
         return ResponseEntity
                 .ok(products);
     }
 
     @GetMapping("/public/products/{id}")
-    public ResponseEntity<ProductResponseDTO> getProductById(
+    public ResponseEntity<ProductResponse> getProductById(
             @PathVariable("id") final Integer id
     ) throws ProductNotFoundException {
         final var product = productService.getProductById(id);
@@ -35,8 +35,8 @@ public class ProductController {
     }
 
     @PostMapping("/private/products")
-    public ResponseEntity<ProductResponseDTO> insertProduct(
-            @Valid @RequestBody final ProductRequestDTO productDTO
+    public ResponseEntity<ProductResponse> insertProduct(
+            @Valid @RequestBody final ProductRequest productDTO
     ) {
         final var product = productService.insertProduct(productDTO);
         return ResponseEntity
@@ -45,9 +45,9 @@ public class ProductController {
     }
 
     @PutMapping("/private/products/{id}")
-    public ResponseEntity<ProductResponseDTO> updateProduct(
+    public ResponseEntity<ProductResponse> updateProduct(
             @PathVariable final Integer id,
-            @Valid @RequestBody final ProductRequestDTO productDTO
+            @Valid @RequestBody final ProductRequest productDTO
     ) throws ProductNotFoundException {
         final var product = productService.updateProduct(id, productDTO);
         return ResponseEntity

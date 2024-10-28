@@ -8,7 +8,7 @@ import lombok.Builder;
 import org.hibernate.validator.constraints.Length;
 
 @Builder
-public record RegisterRequestDTO(
+public record RegisterRequest(
         @NotBlank String name,
         @Email String email,
         @Length(min = 6) String password,

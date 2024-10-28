@@ -2,8 +2,8 @@ package com.itortosagimeno.ecommerce_api.product.model;
 
 public class ProductMapper {
 
-    public static ProductResponseDTO toDTO(ProductEntity entity) {
-        return ProductResponseDTO.builder()
+    public static ProductResponse toResponse(ProductEntity entity) {
+        return ProductResponse.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
@@ -14,26 +14,26 @@ public class ProductMapper {
                 .build();
     }
 
-    public static ProductEntity toEntity(ProductRequestDTO dto) {
+    public static ProductEntity toEntity(ProductRequest request) {
         return ProductEntity.builder()
-                .name(dto.name())
-                .description(dto.description())
-                .price(dto.price())
-                .category(dto.category())
-                .image(dto.image())
-                .stock(dto.stock())
+                .name(request.name())
+                .description(request.description())
+                .price(request.price())
+                .category(request.category())
+                .image(request.image())
+                .stock(request.stock())
                 .build();
     }
 
-    public static ProductEntity toEntityWithId(Integer id, ProductRequestDTO dto) {
+    public static ProductEntity toEntityWithId(Integer id, ProductRequest request) {
         return ProductEntity.builder()
                 .id(id)
-                .name(dto.name())
-                .description(dto.description())
-                .price(dto.price())
-                .category(dto.category())
-                .image(dto.image())
-                .stock(dto.stock())
+                .name(request.name())
+                .description(request.description())
+                .price(request.price())
+                .category(request.category())
+                .image(request.image())
+                .stock(request.stock())
                 .build();
     }
 }

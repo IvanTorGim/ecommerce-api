@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.auth.service;
 
-import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequestDTO;
+import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequest;
 import com.itortosagimeno.ecommerce_api.auth.model.TokenResponse;
 import com.itortosagimeno.ecommerce_api.exception.UserException;
 import com.itortosagimeno.ecommerce_api.user.model.UserEntity;
@@ -18,7 +18,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
 
     @Override
-    public TokenResponse register(final RegisterRequestDTO request) throws UserException {
+    public TokenResponse register(final RegisterRequest request) throws UserException {
         var exists = userRepository.existsByEmail(request.email());
         if (exists) throw new UserException("The user already exists");
 
@@ -32,6 +32,8 @@ public class AuthServiceImpl implements AuthService {
                 .build();
 
         userRepository.save(user);
-        return new TokenResponse(token);
+        return TokenResponse.builder()
+                .accessToken(token)
+                .build();
     }
 }

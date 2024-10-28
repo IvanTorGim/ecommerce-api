@@ -1,19 +1,19 @@
 package com.itortosagimeno.ecommerce_api.product.service;
 
 import com.itortosagimeno.ecommerce_api.exception.ProductNotFoundException;
-import com.itortosagimeno.ecommerce_api.product.model.ProductRequestDTO;
-import com.itortosagimeno.ecommerce_api.product.model.ProductResponseDTO;
+import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
+import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductResponseDTO> getAllProducts();
+    List<ProductResponse> getAllProducts();
 
-    ProductResponseDTO getProductById(Integer id) throws ProductNotFoundException;
+    ProductResponse getProductById(Integer id) throws ProductNotFoundException;
 
-    ProductResponseDTO insertProduct(ProductRequestDTO productDTO);
+    ProductResponse insertProduct(ProductRequest productDTO);
 
-    ProductResponseDTO updateProduct(Integer id, ProductRequestDTO productDTO) throws ProductNotFoundException;
+    ProductResponse updateProduct(Integer id, ProductRequest productDTO) throws ProductNotFoundException;
 
     void deleteProduct(Integer id) throws ProductNotFoundException;
 }
