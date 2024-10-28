@@ -20,7 +20,7 @@ public class ProductController {
 
     @GetMapping("/public/products")
     public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
-        final List<ProductResponseDTO> products = productService.getAllProducts();
+        final var products = productService.getAllProducts();
         return ResponseEntity
                 .ok(products);
     }
@@ -29,7 +29,7 @@ public class ProductController {
     public ResponseEntity<ProductResponseDTO> getProductById(
             @PathVariable("id") final Integer id
     ) throws ProductNotFoundException {
-        final ProductResponseDTO product = productService.getProductById(id);
+        final var product = productService.getProductById(id);
         return ResponseEntity
                 .ok(product);
     }
@@ -38,7 +38,7 @@ public class ProductController {
     public ResponseEntity<ProductResponseDTO> insertProduct(
             @Valid @RequestBody final ProductRequestDTO productDTO
     ) {
-        final ProductResponseDTO product = productService.insertProduct(productDTO);
+        final var product = productService.insertProduct(productDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(product);
@@ -49,8 +49,7 @@ public class ProductController {
             @PathVariable final Integer id,
             @Valid @RequestBody final ProductRequestDTO productDTO
     ) throws ProductNotFoundException {
-        final ProductResponseDTO
-                product = productService.updateProduct(id, productDTO);
+        final var product = productService.updateProduct(id, productDTO);
         return ResponseEntity
                 .ok(product);
     }
