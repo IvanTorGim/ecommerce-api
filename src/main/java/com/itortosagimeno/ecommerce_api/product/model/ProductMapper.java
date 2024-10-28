@@ -15,25 +15,25 @@ public class ProductMapper {
     }
 
     public static ProductEntity toEntity(ProductRequestDTO dto) {
-        ProductEntity entity = new ProductEntity();
-        entity.setName(dto.name());
-        entity.setDescription(dto.description());
-        entity.setPrice(dto.price());
-        entity.setCategory(dto.category());
-        entity.setImage(dto.image());
-        entity.setStock(dto.stock());
-        return entity;
+        return ProductEntity.builder()
+                .name(dto.name())
+                .description(dto.description())
+                .price(dto.price())
+                .category(dto.category())
+                .image(dto.image())
+                .stock(dto.stock())
+                .build();
     }
 
     public static ProductEntity toEntityWithId(Integer id, ProductRequestDTO dto) {
-        ProductEntity entity = new ProductEntity();
-        entity.setId(id);
-        entity.setName(dto.name());
-        entity.setDescription(dto.description());
-        entity.setPrice(dto.price());
-        entity.setCategory(dto.category());
-        entity.setImage(dto.image());
-        entity.setStock(dto.stock());
-        return entity;
+        return ProductEntity.builder()
+                .id(id)
+                .name(dto.name())
+                .description(dto.description())
+                .price(dto.price())
+                .category(dto.category())
+                .image(dto.image())
+                .stock(dto.stock())
+                .build();
     }
 }

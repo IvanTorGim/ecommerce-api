@@ -5,20 +5,18 @@ import com.itortosagimeno.ecommerce_api.product.model.ProductRequestDTO;
 import com.itortosagimeno.ecommerce_api.product.model.ProductResponseDTO;
 import com.itortosagimeno.ecommerce_api.product.service.ProductService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 public class ProductController {
 
     private final ProductService productService;
-
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     @GetMapping("/public/products")
     public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {

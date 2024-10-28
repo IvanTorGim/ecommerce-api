@@ -3,7 +3,9 @@ package com.itortosagimeno.ecommerce_api.product.model;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.Builder;
 
+@Builder
 public record ProductRequestDTO(
         @NotBlank String name,
         @NotNull String description,
