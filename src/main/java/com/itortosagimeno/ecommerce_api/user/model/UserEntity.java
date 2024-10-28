@@ -27,7 +27,7 @@ public class UserEntity {
     private String token;
 
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
