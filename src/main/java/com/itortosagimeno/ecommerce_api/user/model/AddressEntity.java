@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "address")
+@Table(name = "addresses")
 public class AddressEntity {
 
     @Id
@@ -25,4 +25,8 @@ public class AddressEntity {
     private String country;
 
     private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }
