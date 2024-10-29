@@ -11,9 +11,9 @@ public interface ProductService {
 
     ProductResponse getProductById(Integer id) throws ProductNotFoundException;
 
-    ProductResponse insertProduct(ProductRequest productDTO);
+    ProductResponse insertProduct(ProductRequest productRequest);
 
-    ProductResponse updateProduct(Integer id, ProductRequest productDTO) throws ProductNotFoundException;
+    ProductResponse updateProduct(Integer id, ProductRequest productRequest) throws ProductNotFoundException;
 
     void deleteProduct(Integer id) throws ProductNotFoundException;
 }

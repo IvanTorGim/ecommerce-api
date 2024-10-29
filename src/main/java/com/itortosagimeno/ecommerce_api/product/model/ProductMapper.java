@@ -25,15 +25,13 @@ public class ProductMapper {
                 .build();
     }
 
-    public static ProductEntity toEntityWithId(Integer id, ProductRequest request) {
-        return ProductEntity.builder()
-                .id(id)
-                .name(request.name())
-                .description(request.description())
-                .price(request.price())
-                .category(request.category())
-                .image(request.image())
-                .stock(request.stock())
-                .build();
+    public static ProductEntity toEntity(ProductRequest request, ProductEntity entity) {
+        entity.setName(request.name());
+        entity.setDescription(request.description());
+        entity.setPrice(request.price());
+        entity.setCategory(request.category());
+        entity.setImage(request.image());
+        entity.setStock(request.stock());
+        return entity;
     }
 }

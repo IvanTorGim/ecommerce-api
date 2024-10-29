@@ -36,9 +36,9 @@ public class ProductController {
 
     @PostMapping("/private/products")
     public ResponseEntity<ProductResponse> insertProduct(
-            @Valid @RequestBody final ProductRequest productDTO
+            @Valid @RequestBody final ProductRequest productRequest
     ) {
-        final var product = productService.insertProduct(productDTO);
+        final var product = productService.insertProduct(productRequest);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(product);
@@ -47,9 +47,9 @@ public class ProductController {
     @PutMapping("/private/products/{id}")
     public ResponseEntity<ProductResponse> updateProduct(
             @PathVariable final Integer id,
-            @Valid @RequestBody final ProductRequest productDTO
+            @Valid @RequestBody final ProductRequest productRequest
     ) throws ProductNotFoundException {
-        final var product = productService.updateProduct(id, productDTO);
+        final var product = productService.updateProduct(id, productRequest);
         return ResponseEntity
                 .ok(product);
     }

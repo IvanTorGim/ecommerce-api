@@ -31,17 +31,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse insertProduct(final ProductRequest productDTO) {
-        final var entity = ProductMapper.toEntity(productDTO);
+    public ProductResponse insertProduct(final ProductRequest productRequest) {
+        final var entity = ProductMapper.toEntity(productRequest);
         final var saved = productRepository.save(entity);
         return ProductMapper.toResponse(saved);
     }
 
     @Override
-    public ProductResponse updateProduct(final Integer id, final ProductRequest productDTO) throws ProductNotFoundException {
-        final var exists = productRepository.existsById(id);
-        if (!exists) throw new ProductNotFoundException(id);
-        final var entityMapped = ProductMapper.toEntityWithId(id, productDTO);
+    public ProductResponse updateProduct(final Integer id, final ProductRequest productRequest) throws ProductNotFoundException {
+        final var productOptional = productRepository.findById(id);
+        if (productOptional.isEmpty()) throw new ProductNotFoundException(id);
+        final var entityMapped = ProductMapper.toEntity(productRequest, productOptional.get());
         final var saved = productRepository.save(entityMapped);
         return ProductMapper.toResponse(saved);
     }
