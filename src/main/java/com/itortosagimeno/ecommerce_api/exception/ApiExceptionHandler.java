@@ -23,8 +23,8 @@ public class ApiExceptionHandler {
                 .body(apiException);
     }
 
-    @ExceptionHandler(UserException.class)
-    public ResponseEntity<ApiException> handleUserException(UserException e) {
+    @ExceptionHandler(UserExistsException.class)
+    public ResponseEntity<ApiException> handleUserException(UserExistsException e) {
         final var apiException = ApiException.builder()
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(e.getMessage())
@@ -33,6 +33,19 @@ public class ApiExceptionHandler {
                 .build();
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(apiException);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiException> handleUserNotFoundException(UserNotFoundException e) {
+        final var apiException = ApiException.builder()
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(e.getMessage())
+                .status(HttpStatus.NOT_FOUND.value())
+                .time(LocalDateTime.now())
+                .build();
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(apiException);
     }
 }

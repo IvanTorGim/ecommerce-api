@@ -1,7 +1,0 @@
-package com.itortosagimeno.ecommerce_api.exception;
-
-public class UserException extends Exception {
-    public UserException(String message) {
-        super(message);
-    }
-}
