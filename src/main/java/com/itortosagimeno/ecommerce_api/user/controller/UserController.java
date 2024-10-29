@@ -38,8 +38,7 @@ public class UserController {
             @Valid @RequestBody final UserRequest userRequest
     ) throws UserNotFoundException {
         final var user = userService.updateUser(id, userRequest);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(user);
     }
 
@@ -48,8 +47,7 @@ public class UserController {
             @PathVariable("id") final Integer id
     ) throws UserNotFoundException {
         userService.deleteUser(id);
-        return ResponseEntity
-                .noContent()
+        return ResponseEntity.noContent()
                 .build();
     }
 }

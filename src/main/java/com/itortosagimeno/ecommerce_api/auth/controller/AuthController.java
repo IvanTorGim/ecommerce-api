@@ -25,8 +25,7 @@ public class AuthController {
             @Valid @RequestBody final RegisterRequest registerRequest
     ) throws UserExistsException {
         final var token = authenticationService.register(registerRequest);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(token);
     }
 }

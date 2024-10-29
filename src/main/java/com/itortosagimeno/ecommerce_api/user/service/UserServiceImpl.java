@@ -20,25 +20,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponse> getAllUsers() {
-        return userRepository.findAll().stream()
+        return userRepository.findAll()
+                .stream()
                 .map(UserMapper::toResponse)
                 .toList();
     }
 
     @Override
     public UserResponse getUserById(final Integer id) throws UserNotFoundException {
-        final var userOptional = userRepository.findById(id);
-        if (userOptional.isEmpty()) throw new UserNotFoundException(id);
-        return UserMapper.toResponse(userOptional.get());
+        final var optional = userRepository.findById(id);
+        if (optional.isEmpty()) throw new UserNotFoundException(id);
+        return UserMapper.toResponse(optional.get());
     }
 
     @Override
     public UserResponse updateUser(final Integer id, final UserRequest userRequest) throws UserNotFoundException {
-        final var entityOptional = userRepository.findById(id);
-        if (entityOptional.isEmpty()) throw new UserNotFoundException(id);
-        final var user = UserMapper.toEntity(userRequest, entityOptional.get(), passwordEncoder);
-        final var userUpdated = userRepository.save(user);
-        return UserMapper.toResponse(userUpdated);
+        final var optional = userRepository.findById(id);
+        if (optional.isEmpty()) throw new UserNotFoundException(id);
+        final var entity = UserMapper.toEntity(userRequest, optional.get(), passwordEncoder);
+        final var updated = userRepository.save(entity);
+        return UserMapper.toResponse(updated);
     }
 
     @Override

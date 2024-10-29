@@ -18,7 +18,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getAllProducts() {
-        return productRepository.findAll().stream()
+        return productRepository.findAll()
+                .stream()
                 .map(ProductMapper::toResponse)
                 .toList();
     }
@@ -41,8 +42,8 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponse updateProduct(final Integer id, final ProductRequest productRequest) throws ProductNotFoundException {
         final var productOptional = productRepository.findById(id);
         if (productOptional.isEmpty()) throw new ProductNotFoundException(id);
-        final var entityMapped = ProductMapper.toEntity(productRequest, productOptional.get());
-        final var saved = productRepository.save(entityMapped);
+        final var entity = ProductMapper.toEntity(productRequest, productOptional.get());
+        final var saved = productRepository.save(entity);
         return ProductMapper.toResponse(saved);
     }
 

@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
         if (exists) throw new UserExistsException();
 
         final var token = jwtService.generateToken(request);
-        final var user = UserEntity.builder()
+        final var entity = UserEntity.builder()
                 .name(request.name())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
                 .token(token)
                 .build();
 
-        userRepository.save(user);
+        userRepository.save(entity);
         return TokenResponse.builder()
                 .accessToken(token)
                 .build();

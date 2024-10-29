@@ -21,8 +21,7 @@ public class ProductController {
     @GetMapping("/public/products")
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         final var products = productService.getAllProducts();
-        return ResponseEntity
-                .ok(products);
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/public/products/{id}")
@@ -30,8 +29,7 @@ public class ProductController {
             @PathVariable("id") final Integer id
     ) throws ProductNotFoundException {
         final var product = productService.getProductById(id);
-        return ResponseEntity
-                .ok(product);
+        return ResponseEntity.ok(product);
     }
 
     @PostMapping("/private/products")
@@ -39,8 +37,7 @@ public class ProductController {
             @Valid @RequestBody final ProductRequest productRequest
     ) {
         final var product = productService.insertProduct(productRequest);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(product);
     }
 
@@ -50,8 +47,7 @@ public class ProductController {
             @Valid @RequestBody final ProductRequest productRequest
     ) throws ProductNotFoundException {
         final var product = productService.updateProduct(id, productRequest);
-        return ResponseEntity
-                .ok(product);
+        return ResponseEntity.ok(product);
     }
 
     @DeleteMapping("/private/products/{id}")
@@ -59,8 +55,7 @@ public class ProductController {
             @PathVariable final Integer id
     ) throws ProductNotFoundException {
         productService.deleteProduct(id);
-        return ResponseEntity
-                .noContent()
+        return ResponseEntity.noContent()
                 .build();
     }
 }

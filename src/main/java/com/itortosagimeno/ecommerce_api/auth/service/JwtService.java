@@ -19,8 +19,7 @@ public class JwtService {
     private String secretKey;
 
     public String extractUsername(String token) {
-        return jwtClaims(token)
-                .getSubject();
+        return jwtClaims(token).getSubject();
     }
 
     private Claims jwtClaims(String token) {
