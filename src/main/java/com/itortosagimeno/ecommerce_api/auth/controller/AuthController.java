@@ -3,7 +3,6 @@ package com.itortosagimeno.ecommerce_api.auth.controller;
 import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequest;
 import com.itortosagimeno.ecommerce_api.auth.model.TokenResponse;
 import com.itortosagimeno.ecommerce_api.auth.service.AuthService;
-import com.itortosagimeno.ecommerce_api.exception.UserExistsException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<TokenResponse> register(
-            @Valid @RequestBody final RegisterRequest registerRequest
-    ) throws UserExistsException {
+    public ResponseEntity<TokenResponse> register(@Valid @RequestBody final RegisterRequest registerRequest) {
         final var token = authenticationService.register(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(token);

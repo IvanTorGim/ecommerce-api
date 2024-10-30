@@ -1,9 +1,10 @@
 package com.itortosagimeno.ecommerce_api.user.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record AddressRequest(
-        Integer userId,
+        @NotNull Integer userId,
         @NotBlank String street,
         @NotBlank String city,
         @NotBlank String country,

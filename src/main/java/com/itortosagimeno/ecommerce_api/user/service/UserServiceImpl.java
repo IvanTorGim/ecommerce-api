@@ -30,14 +30,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserById(final Integer id) throws UserNotFoundException {
+    public UserResponse getUserById(final Integer id) {
         final var optional = userRepository.findById(id);
         if (optional.isEmpty()) throw new UserNotFoundException(id);
         return UserMapper.toResponse(optional.get());
     }
 
     @Override
-    public UserResponse updateUser(final Integer id, final UserRequest userRequest) throws UserNotFoundException {
+    public UserResponse updateUser(final Integer id, final UserRequest userRequest) {
         final var optional = userRepository.findById(id);
         if (optional.isEmpty()) throw new UserNotFoundException(id);
         final var entity = UserMapper.toEntity(userRequest, optional.get(), passwordEncoder);
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(final Integer id) throws UserNotFoundException {
+    public void deleteUser(final Integer id) {
         final var exists = userRepository.existsById(id);
         if (!exists) throw new UserNotFoundException(id);
         userRepository.deleteById(id);

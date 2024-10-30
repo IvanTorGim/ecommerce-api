@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenResponse register(final RegisterRequest request) throws UserExistsException {
+    public TokenResponse register(final RegisterRequest request) {
         var exists = userRepository.existsByEmail(request.email());
         if (exists) throw new UserExistsException();
 

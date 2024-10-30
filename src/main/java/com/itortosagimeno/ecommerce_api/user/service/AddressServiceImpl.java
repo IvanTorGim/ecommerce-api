@@ -1,6 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
 import com.itortosagimeno.ecommerce_api.exception.AddressNotFoundException;
+import com.itortosagimeno.ecommerce_api.exception.UserNotAuthorizedException;
 import com.itortosagimeno.ecommerce_api.exception.UserNotFoundException;
 import com.itortosagimeno.ecommerce_api.user.model.AddressMapper;
 import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
@@ -23,7 +24,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressResponse> getAddressesByUserId(final Integer userId) throws UserNotFoundException {
+    public List<AddressResponse> getAddressesByUserId(final Integer userId) {
         final var exists = userRepository.existsById(userId);
         if (!exists) throw new UserNotFoundException(userId);
         return addressRepository.findAllByUserId(userId)
@@ -34,24 +35,24 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressResponse insertAddress(final AddressRequest addressRequest) {
-        if (addressRequest.userId() == null)
-            throw new IllegalArgumentException("UserId is required for creating a new address");
         final var entity = AddressMapper.toEntity(addressRequest);
         final var saved = addressRepository.save(entity);
         return AddressMapper.toResponse(saved);
     }
 
     @Override
-    public AddressResponse updateAddress(final Integer id, final AddressRequest addressRequest) throws AddressNotFoundException {
-        final var optional = addressRepository.findById(id);
-        if (optional.isEmpty()) throw new AddressNotFoundException(id);
-        final var entity = AddressMapper.toEntity(addressRequest, optional.get());
+    public AddressResponse updateAddress(final Integer id, final AddressRequest addressRequest) {
+        final var found = addressRepository.findById(id)
+                .orElseThrow(() -> new AddressNotFoundException(id));
+        var matchRequestUserIdAndFoundUserId = found.getUser().getId().equals(addressRequest.userId());
+        if (!matchRequestUserIdAndFoundUserId) throw new UserNotAuthorizedException();
+        final var entity = AddressMapper.toEntity(addressRequest, found);
         final var updated = addressRepository.save(entity);
         return AddressMapper.toResponse(updated);
     }
 
     @Override
-    public void deleteAddress(final Integer id) throws AddressNotFoundException {
+    public void deleteAddress(final Integer id) {
         final var exists = addressRepository.existsById(id);
         if (!exists) throw new AddressNotFoundException(id);
         addressRepository.deleteById(id);

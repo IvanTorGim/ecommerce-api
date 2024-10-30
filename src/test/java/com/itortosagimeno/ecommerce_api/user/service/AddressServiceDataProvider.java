@@ -76,8 +76,7 @@ public class AddressServiceDataProvider {
     }
 
     protected static AddressEntity addressEntity() {
-        var user = new UserEntity();
-        user.setId(1);
+        var user = new UserEntity(1);
         return new AddressEntity(
                 1,
                 "street 1",
@@ -89,8 +88,19 @@ public class AddressServiceDataProvider {
     }
 
     protected static Optional<AddressEntity> optionalAddressEntity() {
-        var user = new UserEntity();
-        user.setId(1);
+        var user = new UserEntity(1);
+        return Optional.of(new AddressEntity(
+                1,
+                "street 2",
+                "city 2",
+                "country 2",
+                "22222",
+                user
+        ));
+    }
+
+    protected static Optional<AddressEntity> optionalAddressEntityWithNoValidUserId() {
+        var user = new UserEntity(2);
         return Optional.of(new AddressEntity(
                 1,
                 "street 2",

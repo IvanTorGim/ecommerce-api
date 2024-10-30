@@ -37,7 +37,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testGetProductById() throws ProductNotFoundException {
+    void testGetProductById() {
         final var expected = productResponse();
         final var mock = productEntity();
         when(productRepository.findById(anyInt())).thenReturn(Optional.of(mock));
@@ -65,7 +65,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testUpdateProduct() throws ProductNotFoundException {
+    void testUpdateProduct() {
         final var expected = productResponse();
         ProductEntity mock = productEntity();
         final var optional = optionalProductEntity();
@@ -88,7 +88,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testDeleteProduct() throws ProductNotFoundException {
+    void testDeleteProduct() {
         when(productRepository.existsById(anyInt())).thenReturn(true);
         productService.deleteProduct(anyInt());
         verify(productRepository).existsById(anyInt());

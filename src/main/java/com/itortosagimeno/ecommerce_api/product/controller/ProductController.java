@@ -1,6 +1,5 @@
 package com.itortosagimeno.ecommerce_api.product.controller;
 
-import com.itortosagimeno.ecommerce_api.exception.ProductNotFoundException;
 import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
 import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
 import com.itortosagimeno.ecommerce_api.product.service.ProductService;
@@ -27,17 +26,13 @@ public class ProductController {
     }
 
     @GetMapping("/public/products/{id}")
-    public ResponseEntity<ProductResponse> getProductById(
-            @PathVariable("id") final Integer id
-    ) throws ProductNotFoundException {
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable("id") final Integer id) {
         final var product = productService.getProductById(id);
         return ResponseEntity.ok(product);
     }
 
     @PostMapping("/private/products")
-    public ResponseEntity<ProductResponse> insertProduct(
-            @Valid @RequestBody final ProductRequest productRequest
-    ) {
+    public ResponseEntity<ProductResponse> insertProduct(@Valid @RequestBody final ProductRequest productRequest) {
         final var product = productService.insertProduct(productRequest);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(product);
@@ -47,15 +42,13 @@ public class ProductController {
     public ResponseEntity<ProductResponse> updateProduct(
             @PathVariable final Integer id,
             @Valid @RequestBody final ProductRequest productRequest
-    ) throws ProductNotFoundException {
+    ) {
         final var product = productService.updateProduct(id, productRequest);
         return ResponseEntity.ok(product);
     }
 
     @DeleteMapping("/private/products/{id}")
-    public ResponseEntity<Void> deleteProduct(
-            @PathVariable final Integer id
-    ) throws ProductNotFoundException {
+    public ResponseEntity<Void> deleteProduct(@PathVariable final Integer id) {
         productService.deleteProduct(id);
         return ResponseEntity.noContent()
                 .build();

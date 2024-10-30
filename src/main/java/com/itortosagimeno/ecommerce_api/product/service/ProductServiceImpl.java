@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse getProductById(final Integer id) throws ProductNotFoundException {
+    public ProductResponse getProductById(final Integer id) {
         return productRepository.findById(id)
                 .map(ProductMapper::toResponse)
                 .orElseThrow(() -> new ProductNotFoundException(id));
@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse updateProduct(final Integer id, final ProductRequest productRequest) throws ProductNotFoundException {
+    public ProductResponse updateProduct(final Integer id, final ProductRequest productRequest) {
         final var productOptional = productRepository.findById(id);
         if (productOptional.isEmpty()) throw new ProductNotFoundException(id);
         final var entity = ProductMapper.toEntity(productRequest, productOptional.get());
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(final Integer id) throws ProductNotFoundException {
+    public void deleteProduct(final Integer id) {
         var exists = productRepository.existsById(id);
         if (!exists) throw new ProductNotFoundException(id);
         productRepository.deleteById(id);

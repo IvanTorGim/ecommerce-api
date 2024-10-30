@@ -1,6 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
 import com.itortosagimeno.ecommerce_api.exception.AddressNotFoundException;
+import com.itortosagimeno.ecommerce_api.exception.UserNotAuthorizedException;
 import com.itortosagimeno.ecommerce_api.exception.UserNotFoundException;
 import com.itortosagimeno.ecommerce_api.user.model.AddressEntity;
 import com.itortosagimeno.ecommerce_api.user.repository.AddressRepository;
@@ -32,7 +33,7 @@ class AddressServiceImplTest {
     private AddressServiceImpl addressService;
 
     @Test
-    void getAddressesByUserId() throws UserNotFoundException {
+    void getAddressesByUserId() {
         final var expected = addressResponseList();
         final var mock = addressEntityList();
         when(userRepository.existsById(anyInt())).thenReturn(true);
@@ -63,7 +64,7 @@ class AddressServiceImplTest {
     }
 
     @Test
-    void updateAddress() throws AddressNotFoundException {
+    void updateAddress() {
         final var expected = addressResponse();
         final var mock = addressEntity();
         final var optional = optionalAddressEntity();
@@ -86,7 +87,17 @@ class AddressServiceImplTest {
     }
 
     @Test
-    void deleteAddress() throws AddressNotFoundException {
+    void updateAddressThrowsUserNotAuthorizedException() {
+        final var optional = optionalAddressEntityWithNoValidUserId();
+        when(addressRepository.findById(anyInt())).thenReturn(optional);
+        final var request = addressRequest();
+        assertThrows(UserNotAuthorizedException.class, () -> addressService.updateAddress(anyInt(), request));
+        verify(addressRepository).findById(anyInt());
+        verify(addressRepository, times(0)).save(any(AddressEntity.class));
+    }
+
+    @Test
+    void deleteAddress() {
         when(addressRepository.existsById(anyInt())).thenReturn(true);
         addressService.deleteAddress(anyInt());
         verify(addressRepository).existsById(anyInt());
