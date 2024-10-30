@@ -23,4 +23,12 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderMapper::toResponse)
                 .toList();
     }
+
+    @Override
+    public List<OrderResponse> getOrdersByAddressId(final Integer addressId) {
+        return orderRepository.findAllByAddressId(addressId)
+                .stream()
+                .map(OrderMapper::toResponse)
+                .toList();
+    }
 }

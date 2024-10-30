@@ -20,20 +20,20 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping("/public/address/users/{id}")
+    @GetMapping("/public/addresses/users/{id}")
     public ResponseEntity<List<AddressResponse>> getAddressByUserId(@PathVariable("id") final Integer userId) {
         final var addresses = addressService.getAddressesByUserId(userId);
         return ResponseEntity.ok(addresses);
     }
 
-    @PostMapping("/public/address")
+    @PostMapping("/public/addresses")
     public ResponseEntity<AddressResponse> insertAddress(@Valid @RequestBody final AddressRequest addressRequest) {
         final var address = addressService.insertAddress(addressRequest);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(address);
     }
 
-    @PutMapping("/public/address/{id}")
+    @PutMapping("/public/addresses/{id}")
     public ResponseEntity<AddressResponse> updateAddress(
             @PathVariable("id") final Integer id,
             @Valid @RequestBody final AddressRequest addressRequest
@@ -43,7 +43,7 @@ public class AddressController {
                 .body(address);
     }
 
-    @GetMapping("/public/address/{id}")
+    @GetMapping("/public/addresses/{id}")
     public ResponseEntity<Void> deleteAddress(@PathVariable("id") final Integer id) {
         addressService.deleteAddress(id);
         return ResponseEntity.noContent()

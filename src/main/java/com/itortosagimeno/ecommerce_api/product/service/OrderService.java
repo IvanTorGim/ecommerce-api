@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderResponse> getAllOrders();
+
+    List<OrderResponse> getOrdersByAddressId(Integer addressId);
 }
