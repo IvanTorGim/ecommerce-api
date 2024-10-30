@@ -3,16 +3,14 @@ package com.itortosagimeno.ecommerce_api.user.model;
 public class AddressMapper {
 
     public static AddressEntity toEntity(AddressRequest request) {
-        final var user = UserEntity.builder()
-                .id(request.userId())
-                .build();
-        return AddressEntity.builder()
-                .user(user)
-                .street(request.street())
-                .city(request.city())
-                .country(request.country())
-                .zipCode(request.zipCode())
-                .build();
+        final var user = new UserEntity(request.userId());
+        return new AddressEntity(
+                request.street(),
+                request.city(),
+                request.country(),
+                request.zipCode(),
+                user
+        );
     }
 
     public static AddressEntity toEntity(AddressRequest request, AddressEntity entity) {
@@ -24,13 +22,13 @@ public class AddressMapper {
     }
 
     public static AddressResponse toResponse(AddressEntity entity) {
-        return AddressResponse.builder()
-                .id(entity.getId())
-                .userId(entity.getUser().getId())
-                .street(entity.getStreet())
-                .city(entity.getCity())
-                .country(entity.getCountry())
-                .zipCode(entity.getZipCode())
-                .build();
+        return new AddressResponse(
+                entity.getId(),
+                entity.getUser().getId(),
+                entity.getStreet(),
+                entity.getCity(),
+                entity.getCountry(),
+                entity.getZipCode()
+        );
     }
 }

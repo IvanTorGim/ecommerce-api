@@ -12,12 +12,12 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ApiException> handleProductNotFoundException(ProductNotFoundException e) {
-        final var apiException = ApiException.builder()
-                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
-                .message(e.getMessage())
-                .status(HttpStatus.NOT_FOUND.value())
-                .time(LocalDateTime.now())
-                .build();
+        final var apiException = new ApiException(
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                e.getMessage(),
+                HttpStatus.NOT_FOUND.value(),
+                LocalDateTime.now()
+        );
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(apiException);
@@ -25,12 +25,12 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(UserExistsException.class)
     public ResponseEntity<ApiException> handleUserException(UserExistsException e) {
-        final var apiException = ApiException.builder()
-                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
-                .message(e.getMessage())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .time(LocalDateTime.now())
-                .build();
+        final var apiException = new ApiException(
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                e.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(apiException);
@@ -38,12 +38,12 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiException> handleUserNotFoundException(UserNotFoundException e) {
-        final var apiException = ApiException.builder()
-                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
-                .message(e.getMessage())
-                .status(HttpStatus.NOT_FOUND.value())
-                .time(LocalDateTime.now())
-                .build();
+        final var apiException = new ApiException(
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                e.getMessage(),
+                HttpStatus.NOT_FOUND.value(),
+                LocalDateTime.now()
+        );
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(apiException);

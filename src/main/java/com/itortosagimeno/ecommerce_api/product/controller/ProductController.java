@@ -5,18 +5,20 @@ import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
 import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
 import com.itortosagimeno.ecommerce_api.product.service.ProductService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 public class ProductController {
 
     private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/public/products")
     public ResponseEntity<List<ProductResponse>> getAllProducts() {

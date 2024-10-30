@@ -6,18 +6,21 @@ import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
 import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
 import com.itortosagimeno.ecommerce_api.user.service.AddressService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+
 @RestController
 public class AddressController {
 
     private final AddressService addressService;
+
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
 
     @GetMapping("/public/address/users/{id}")
     public ResponseEntity<List<AddressResponse>> getAddressByUserId(

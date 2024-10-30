@@ -1,7 +1,6 @@
 package com.itortosagimeno.ecommerce_api.config;
 
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,11 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@RequiredArgsConstructor
 @Configuration
 public class AppConfig {
 
     private final UserRepository userRepository;
+
+    public AppConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

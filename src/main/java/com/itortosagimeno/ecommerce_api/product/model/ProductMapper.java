@@ -3,26 +3,26 @@ package com.itortosagimeno.ecommerce_api.product.model;
 public class ProductMapper {
 
     public static ProductResponse toResponse(ProductEntity entity) {
-        return ProductResponse.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .description(entity.getDescription())
-                .price(entity.getPrice())
-                .category(entity.getCategory())
-                .image(entity.getImage())
-                .stock(entity.getStock())
-                .build();
+        return new ProductResponse(
+                entity.getId(),
+                entity.getName(),
+                entity.getDescription(),
+                entity.getPrice(),
+                entity.getCategory(),
+                entity.getImage(),
+                entity.getStock()
+        );
     }
 
     public static ProductEntity toEntity(ProductRequest request) {
-        return ProductEntity.builder()
-                .name(request.name())
-                .description(request.description())
-                .price(request.price())
-                .category(request.category())
-                .image(request.image())
-                .stock(request.stock())
-                .build();
+        return new ProductEntity(
+                request.name(),
+                request.description(),
+                request.price(),
+                request.image(),
+                request.stock(),
+                request.category()
+        );
     }
 
     public static ProductEntity toEntity(ProductRequest request, ProductEntity entity) {

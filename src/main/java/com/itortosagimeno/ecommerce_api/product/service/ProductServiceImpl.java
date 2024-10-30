@@ -5,16 +5,18 @@ import com.itortosagimeno.ecommerce_api.product.model.ProductMapper;
 import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
 import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
 import com.itortosagimeno.ecommerce_api.product.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public List<ProductResponse> getAllProducts() {

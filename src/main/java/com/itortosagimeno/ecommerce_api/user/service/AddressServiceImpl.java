@@ -7,17 +7,20 @@ import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
 import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
 import com.itortosagimeno.ecommerce_api.user.repository.AddressRepository;
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
+
+    public AddressServiceImpl(AddressRepository addressRepository, UserRepository userRepository) {
+        this.addressRepository = addressRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<AddressResponse> getAddressesByUserId(final Integer userId) throws UserNotFoundException {

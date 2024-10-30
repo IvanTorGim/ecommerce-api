@@ -5,12 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class UserMapper {
 
     public static UserResponse toResponse(UserEntity entity) {
-        return UserResponse.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .email(entity.getEmail())
-                .role(entity.getRole())
-                .build();
+        return new UserResponse(
+                entity.getId(),
+                entity.getEmail(),
+                entity.getName(),
+                entity.getRole()
+        );
     }
 
     public static UserEntity toEntity(UserRequest request, UserEntity entity, PasswordEncoder passwordEncoder) {
