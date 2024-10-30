@@ -9,20 +9,26 @@ import java.util.Objects;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "price")
     private Double price;
 
+    @Column(name = "image")
     private String image;
 
+    @Column(name = "stock")
     private Integer stock;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "category")
     private Category category;
 
     public ProductEntity() {
