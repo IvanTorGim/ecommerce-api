@@ -29,4 +29,10 @@ public class OrderController {
         final var orders = orderService.getOrdersByAddressId(addressId);
         return ResponseEntity.ok(orders);
     }
+
+    @GetMapping("/public/orders/users/{id}")
+    public ResponseEntity<List<OrderResponse>> getOrdersByUserId(@PathVariable("id") final Integer userId) {
+        final var orders = orderService.getOrdersByUserId(userId);
+        return ResponseEntity.ok(orders);
+    }
 }

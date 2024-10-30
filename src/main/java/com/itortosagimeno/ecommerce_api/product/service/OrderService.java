@@ -8,4 +8,6 @@ public interface OrderService {
     List<OrderResponse> getAllOrders();
 
     List<OrderResponse> getOrdersByAddressId(Integer addressId);
+
+    List<OrderResponse> getOrdersByUserId(Integer userId);
 }
