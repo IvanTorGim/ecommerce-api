@@ -12,8 +12,22 @@ public class AddressServiceDataProvider {
 
     protected static List<AddressResponse> addressResponseList() {
         return List.of(
-                new AddressResponse(1, 1, "street 1", "city 1", "country 1", "11111"),
-                new AddressResponse(2, 1, "street 2", "city 2", "country 2", "22222")
+                new AddressResponse(
+                        1,
+                        1,
+                        "street 1",
+                        "city 1",
+                        "country 1",
+                        "11111"
+                ),
+                new AddressResponse(
+                        2,
+                        1,
+                        "street 2",
+                        "city 2",
+                        "country 2",
+                        "22222"
+                )
         );
     }
 
@@ -21,26 +35,69 @@ public class AddressServiceDataProvider {
         var user = new UserEntity();
         user.setId(1);
         return List.of(
-                new AddressEntity(1, "street 1", "city 1", "country 1", "11111", user),
-                new AddressEntity(2, "street 2", "city 2", "country 2", "22222", user)
+                new AddressEntity(
+                        1,
+                        "street 1",
+                        "city 1",
+                        "country 1",
+                        "11111",
+                        user
+                ),
+                new AddressEntity(
+                        2,
+                        "street 2",
+                        "city 2",
+                        "country 2",
+                        "22222",
+                        user
+                )
         );
     }
 
     protected static AddressResponse addressResponse() {
-        return new AddressResponse(1, 1, "street", "city", "country", "11111");
+        return new AddressResponse(
+                1,
+                1,
+                "street 1",
+                "city 1",
+                "country 1",
+                "11111"
+        );
     }
 
     protected static AddressRequest addressRequest() {
-        return new AddressRequest(1, "street", "city", "country", "11111");
+        return new AddressRequest(
+                1,
+                "street 1",
+                "city 1",
+                "country 1",
+                "11111"
+        );
     }
 
     protected static AddressEntity addressEntity() {
         var user = new UserEntity();
         user.setId(1);
-        return new AddressEntity(1, "street", "city", "country", "11111", user);
+        return new AddressEntity(
+                1,
+                "street 1",
+                "city 1",
+                "country 1",
+                "11111",
+                user
+        );
     }
 
-    protected static Optional<AddressEntity> addressEntityOptional() {
-        return Optional.of(addressEntity());
+    protected static Optional<AddressEntity> optionalAddressEntity() {
+        var user = new UserEntity();
+        user.setId(1);
+        return Optional.of(new AddressEntity(
+                1,
+                "street 2",
+                "city 2",
+                "country 2",
+                "22222",
+                user
+        ));
     }
 }

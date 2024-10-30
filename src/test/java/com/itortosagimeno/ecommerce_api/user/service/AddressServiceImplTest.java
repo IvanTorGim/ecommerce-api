@@ -33,11 +33,11 @@ class AddressServiceImplTest {
 
     @Test
     void getAddressesByUserId() throws UserNotFoundException {
-        var expected = addressResponseList();
-        var mock = addressEntityList();
+        final var expected = addressResponseList();
+        final var mock = addressEntityList();
         when(userRepository.existsById(anyInt())).thenReturn(true);
         when(addressRepository.findAllByUserId(anyInt())).thenReturn(mock);
-        var actual = addressService.getAddressesByUserId(anyInt());
+        final var actual = addressService.getAddressesByUserId(anyInt());
         assertEquals(expected, actual);
         verify(userRepository).existsById(anyInt());
         verify(addressRepository).findAllByUserId(anyInt());
@@ -53,24 +53,24 @@ class AddressServiceImplTest {
 
     @Test
     void insertAddress() {
-        var expected = addressResponse();
-        var mock = addressEntity();
+        final var expected = addressResponse();
+        final var mock = addressEntity();
         when(addressRepository.save(any(AddressEntity.class))).thenReturn(mock);
-        var request = addressRequest();
-        var actual = addressService.insertAddress(request);
+        final var request = addressRequest();
+        final var actual = addressService.insertAddress(request);
         assertEquals(expected, actual);
         verify(addressRepository).save(any(AddressEntity.class));
     }
 
     @Test
     void updateAddress() throws AddressNotFoundException {
-        var expected = addressResponse();
-        var mock = addressEntity();
-        var find = addressEntityOptional();
-        when(addressRepository.findById(anyInt())).thenReturn(find);
+        final var expected = addressResponse();
+        final var mock = addressEntity();
+        final var optional = optionalAddressEntity();
+        when(addressRepository.findById(anyInt())).thenReturn(optional);
         when(addressRepository.save(any(AddressEntity.class))).thenReturn(mock);
-        var request = addressRequest();
-        var actual = addressService.updateAddress(anyInt(), request);
+        final var request = addressRequest();
+        final var actual = addressService.updateAddress(anyInt(), request);
         assertEquals(expected, actual);
         verify(addressRepository).findById(anyInt());
         verify(addressRepository).save(any(AddressEntity.class));
@@ -79,7 +79,7 @@ class AddressServiceImplTest {
     @Test
     void updateAddressThrowsAddressNotFoundException() {
         when(addressRepository.findById(anyInt())).thenReturn(Optional.empty());
-        var request = addressRequest();
+        final var request = addressRequest();
         assertThrows(AddressNotFoundException.class, () -> addressService.updateAddress(anyInt(), request));
         verify(addressRepository).findById(anyInt());
         verify(addressRepository, times(0)).save(any(AddressEntity.class));
