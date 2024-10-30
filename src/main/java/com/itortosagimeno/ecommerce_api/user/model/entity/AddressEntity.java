@@ -9,15 +9,19 @@ import java.util.Objects;
 public class AddressEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "street")
     private String street;
 
+    @Column(name = "city")
     private String city;
 
+    @Column(name = "country")
     private String country;
 
+    @Column(name = "zip_code")
     private String zipCode;
 
     @ManyToOne

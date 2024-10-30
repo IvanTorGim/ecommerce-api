@@ -10,18 +10,23 @@ import java.util.Objects;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "token")
     private String token;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     public UserEntity() {
