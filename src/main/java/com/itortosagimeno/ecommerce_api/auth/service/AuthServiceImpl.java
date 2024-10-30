@@ -2,8 +2,8 @@ package com.itortosagimeno.ecommerce_api.auth.service;
 
 import com.itortosagimeno.ecommerce_api.auth.model.RegisterRequest;
 import com.itortosagimeno.ecommerce_api.auth.model.TokenResponse;
-import com.itortosagimeno.ecommerce_api.exception.UserExistsException;
-import com.itortosagimeno.ecommerce_api.user.model.UserEntity;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserExistsException;
+import com.itortosagimeno.ecommerce_api.user.model.entity.UserEntity;
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

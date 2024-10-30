@@ -1,9 +1,9 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.exception.AddressNotFoundException;
-import com.itortosagimeno.ecommerce_api.exception.UserNotAuthorizedException;
-import com.itortosagimeno.ecommerce_api.exception.UserNotFoundException;
-import com.itortosagimeno.ecommerce_api.user.model.AddressEntity;
+import com.itortosagimeno.ecommerce_api.exception.custom.AddressNotFoundException;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserNotAuthorizedException;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserNotFoundException;
+import com.itortosagimeno.ecommerce_api.user.model.entity.AddressEntity;
 import com.itortosagimeno.ecommerce_api.user.repository.AddressRepository;
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;

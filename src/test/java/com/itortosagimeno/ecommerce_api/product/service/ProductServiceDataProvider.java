@@ -1,9 +1,9 @@
 package com.itortosagimeno.ecommerce_api.product.service;
 
-import com.itortosagimeno.ecommerce_api.product.model.Category;
-import com.itortosagimeno.ecommerce_api.product.model.ProductEntity;
-import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
-import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
+import com.itortosagimeno.ecommerce_api.product.model.common.Category;
+import com.itortosagimeno.ecommerce_api.product.model.dto.ProductRequest;
+import com.itortosagimeno.ecommerce_api.product.model.dto.ProductResponse;
+import com.itortosagimeno.ecommerce_api.product.model.entity.ProductEntity;
 
 import java.util.List;
 import java.util.Optional;

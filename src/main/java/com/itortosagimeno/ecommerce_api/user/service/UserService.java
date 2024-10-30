@@ -1,7 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.user.model.UserRequest;
-import com.itortosagimeno.ecommerce_api.user.model.UserResponse;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserResponse;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.controller;
 
-import com.itortosagimeno.ecommerce_api.user.model.UserRequest;
-import com.itortosagimeno.ecommerce_api.user.model.UserResponse;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserResponse;
 import com.itortosagimeno.ecommerce_api.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
-import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressResponse;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.itortosagimeno.ecommerce_api.product.service;
 
-import com.itortosagimeno.ecommerce_api.exception.ProductNotFoundException;
-import com.itortosagimeno.ecommerce_api.product.model.ProductMapper;
-import com.itortosagimeno.ecommerce_api.product.model.ProductRequest;
-import com.itortosagimeno.ecommerce_api.product.model.ProductResponse;
+import com.itortosagimeno.ecommerce_api.exception.custom.ProductNotFoundException;
+import com.itortosagimeno.ecommerce_api.product.model.dto.ProductRequest;
+import com.itortosagimeno.ecommerce_api.product.model.dto.ProductResponse;
+import com.itortosagimeno.ecommerce_api.product.model.mapper.ProductMapper;
 import com.itortosagimeno.ecommerce_api.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,9 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.exception.UserNotFoundException;
-import com.itortosagimeno.ecommerce_api.user.model.UserMapper;
-import com.itortosagimeno.ecommerce_api.user.model.UserRequest;
-import com.itortosagimeno.ecommerce_api.user.model.UserResponse;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserNotFoundException;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.UserResponse;
+import com.itortosagimeno.ecommerce_api.user.model.mapper.UserMapper;
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

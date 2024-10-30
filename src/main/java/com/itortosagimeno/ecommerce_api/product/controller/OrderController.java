@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.product.controller;
 
-import com.itortosagimeno.ecommerce_api.product.model.OrderResponse;
+import com.itortosagimeno.ecommerce_api.product.model.dto.OrderResponse;
 import com.itortosagimeno.ecommerce_api.product.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

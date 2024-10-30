@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.config;
 
-import com.itortosagimeno.ecommerce_api.user.model.Role;
+import com.itortosagimeno.ecommerce_api.user.model.common.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

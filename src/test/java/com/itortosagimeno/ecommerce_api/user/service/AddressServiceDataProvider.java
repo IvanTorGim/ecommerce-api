@@ -1,9 +1,9 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.user.model.AddressEntity;
-import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
-import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
-import com.itortosagimeno.ecommerce_api.user.model.UserEntity;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressResponse;
+import com.itortosagimeno.ecommerce_api.user.model.entity.AddressEntity;
+import com.itortosagimeno.ecommerce_api.user.model.entity.UserEntity;
 
 import java.util.List;
 import java.util.Optional;

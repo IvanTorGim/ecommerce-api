@@ -1,7 +1,7 @@
 package com.itortosagimeno.ecommerce_api.product.service;
 
-import com.itortosagimeno.ecommerce_api.product.model.OrderMapper;
-import com.itortosagimeno.ecommerce_api.product.model.OrderResponse;
+import com.itortosagimeno.ecommerce_api.product.model.dto.OrderResponse;
+import com.itortosagimeno.ecommerce_api.product.model.mapper.OrderMapper;
 import com.itortosagimeno.ecommerce_api.product.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 

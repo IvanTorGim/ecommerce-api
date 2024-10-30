@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.auth.model;
 
-import com.itortosagimeno.ecommerce_api.user.model.Role;
+import com.itortosagimeno.ecommerce_api.user.model.common.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

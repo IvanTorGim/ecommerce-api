@@ -1,6 +1,6 @@
 package com.itortosagimeno.ecommerce_api.user.repository;
 
-import com.itortosagimeno.ecommerce_api.user.model.UserEntity;
+import com.itortosagimeno.ecommerce_api.user.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

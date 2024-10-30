@@ -1,7 +1,7 @@
 package com.itortosagimeno.ecommerce_api.user.controller;
 
-import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
-import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressResponse;
 import com.itortosagimeno.ecommerce_api.user.service.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

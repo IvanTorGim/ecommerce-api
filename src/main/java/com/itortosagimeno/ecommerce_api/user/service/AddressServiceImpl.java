@@ -1,11 +1,11 @@
 package com.itortosagimeno.ecommerce_api.user.service;
 
-import com.itortosagimeno.ecommerce_api.exception.AddressNotFoundException;
-import com.itortosagimeno.ecommerce_api.exception.UserNotAuthorizedException;
-import com.itortosagimeno.ecommerce_api.exception.UserNotFoundException;
-import com.itortosagimeno.ecommerce_api.user.model.AddressMapper;
-import com.itortosagimeno.ecommerce_api.user.model.AddressRequest;
-import com.itortosagimeno.ecommerce_api.user.model.AddressResponse;
+import com.itortosagimeno.ecommerce_api.exception.custom.AddressNotFoundException;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserNotAuthorizedException;
+import com.itortosagimeno.ecommerce_api.exception.custom.UserNotFoundException;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressRequest;
+import com.itortosagimeno.ecommerce_api.user.model.dto.AddressResponse;
+import com.itortosagimeno.ecommerce_api.user.model.mapper.AddressMapper;
 import com.itortosagimeno.ecommerce_api.user.repository.AddressRepository;
 import com.itortosagimeno.ecommerce_api.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
