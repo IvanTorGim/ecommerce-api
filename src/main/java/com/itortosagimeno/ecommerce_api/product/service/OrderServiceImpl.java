@@ -1,5 +1,6 @@
 package com.itortosagimeno.ecommerce_api.product.service;
 
+import com.itortosagimeno.ecommerce_api.exception.custom.AddressNotFoundException;
 import com.itortosagimeno.ecommerce_api.exception.custom.OrderNotFoundException;
 import com.itortosagimeno.ecommerce_api.product.model.dto.OrderRequest;
 import com.itortosagimeno.ecommerce_api.product.model.dto.OrderResponse;
@@ -7,6 +8,7 @@ import com.itortosagimeno.ecommerce_api.product.model.mapper.OrderMapper;
 import com.itortosagimeno.ecommerce_api.product.model.mapper.OrderProductMapper;
 import com.itortosagimeno.ecommerce_api.product.repository.OrderProductRepository;
 import com.itortosagimeno.ecommerce_api.product.repository.OrderRepository;
+import com.itortosagimeno.ecommerce_api.user.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +19,12 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderProductRepository orderProductRepository;
+    private final AddressRepository addressRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderProductRepository orderProductRepository, AddressRepository addressRepository) {
         this.orderRepository = orderRepository;
         this.orderProductRepository = orderProductRepository;
+        this.addressRepository = addressRepository;
     }
 
     @Override
@@ -57,6 +61,8 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderResponse insertOrder(OrderRequest orderRequest) {
+        final var addressExists = addressRepository.existsById(orderRequest.addressId());
+        if (!addressExists) throw new AddressNotFoundException(orderRequest.addressId());
         final var orderEntity = OrderMapper.toEntity(orderRequest);
         final var orderSaved = orderRepository.save(orderEntity);
         final var orderProductEntityList = orderRequest.products()
