@@ -12,26 +12,30 @@ import java.util.Objects;
 public class OrderEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
     @Column(name = "datetime")
     private LocalDateTime datetime;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderProductEntity> orderProductList;
 
     public OrderEntity() {
     }
 
-    public OrderEntity(AddressEntity address, LocalDateTime datetime, List<OrderProductEntity> orderProductList) {
+    public OrderEntity(Integer id) {
+        this.id = id;
+    }
+
+    public OrderEntity(AddressEntity address, LocalDateTime datetime) {
         this.address = address;
         this.datetime = datetime;
-        this.orderProductList = orderProductList;
     }
 
     public OrderEntity(Integer id, AddressEntity address, LocalDateTime datetime, List<OrderProductEntity> orderProductList) {

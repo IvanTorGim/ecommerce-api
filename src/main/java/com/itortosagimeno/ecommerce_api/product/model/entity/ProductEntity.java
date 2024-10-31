@@ -10,6 +10,7 @@ import java.util.Objects;
 public class ProductEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -33,6 +34,10 @@ public class ProductEntity {
     private Category category;
 
     public ProductEntity() {
+    }
+
+    public ProductEntity(Integer id) {
+        this.id = id;
     }
 
     public ProductEntity(String name, String description, Double price, String image, Integer stock, Category category) {

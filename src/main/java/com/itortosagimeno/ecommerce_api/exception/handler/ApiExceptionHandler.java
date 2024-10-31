@@ -1,5 +1,6 @@
 package com.itortosagimeno.ecommerce_api.exception.handler;
 
+import com.itortosagimeno.ecommerce_api.exception.custom.OrderNotFoundException;
 import com.itortosagimeno.ecommerce_api.exception.custom.ProductNotFoundException;
 import com.itortosagimeno.ecommerce_api.exception.custom.UserExistsException;
 import com.itortosagimeno.ecommerce_api.exception.custom.UserNotFoundException;
@@ -22,8 +23,7 @@ public class ApiExceptionHandler {
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now()
         );
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(apiException);
     }
 
@@ -35,8 +35,7 @@ public class ApiExceptionHandler {
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now()
         );
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(apiException);
     }
 
@@ -48,8 +47,19 @@ public class ApiExceptionHandler {
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now()
         );
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(apiException);
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ApiException> handleOrderNotFoundException(OrderNotFoundException e) {
+        final var apiException = new ApiException(
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                e.getMessage(),
+                HttpStatus.NOT_FOUND.value(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(apiException);
     }
 }

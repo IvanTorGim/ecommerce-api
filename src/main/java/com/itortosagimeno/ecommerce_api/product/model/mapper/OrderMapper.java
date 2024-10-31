@@ -1,8 +1,11 @@
 package com.itortosagimeno.ecommerce_api.product.model.mapper;
 
+import com.itortosagimeno.ecommerce_api.product.model.dto.OrderRequest;
 import com.itortosagimeno.ecommerce_api.product.model.dto.OrderResponse;
 import com.itortosagimeno.ecommerce_api.product.model.entity.OrderEntity;
-import com.itortosagimeno.ecommerce_api.user.model.mapper.AddressMapper;
+import com.itortosagimeno.ecommerce_api.user.model.entity.AddressEntity;
+
+import java.time.LocalDateTime;
 
 public class OrderMapper {
 
@@ -13,8 +16,15 @@ public class OrderMapper {
         return new OrderResponse(
                 entity.getId(),
                 entity.getDatetime(),
-                AddressMapper.toResponse(entity.getAddress()),
+                entity.getAddress().getId(),
                 products
+        );
+    }
+
+    public static OrderEntity toEntity(OrderRequest request) {
+        return new OrderEntity(
+                new AddressEntity(request.addressId()),
+                LocalDateTime.now()
         );
     }
 }

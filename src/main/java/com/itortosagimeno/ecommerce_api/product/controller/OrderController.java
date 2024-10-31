@@ -1,11 +1,12 @@
 package com.itortosagimeno.ecommerce_api.product.controller;
 
+import com.itortosagimeno.ecommerce_api.product.model.dto.OrderRequest;
 import com.itortosagimeno.ecommerce_api.product.model.dto.OrderResponse;
 import com.itortosagimeno.ecommerce_api.product.service.OrderService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +35,25 @@ public class OrderController {
     public ResponseEntity<List<OrderResponse>> getOrdersByUserId(@PathVariable("id") final Integer userId) {
         final var orders = orderService.getOrdersByUserId(userId);
         return ResponseEntity.ok(orders);
+    }
+
+    @GetMapping("/public/orders/{id}")
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable("id") final Integer id) {
+        final var order = orderService.getOrderById(id);
+        return ResponseEntity.ok(order);
+    }
+
+    @PostMapping("/public/orders")
+    public ResponseEntity<OrderResponse> insertOrder(@Valid @RequestBody final OrderRequest orderRequest) {
+        final var order = orderService.insertOrder(orderRequest);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(order);
+    }
+
+    @DeleteMapping("/public/orders/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable("id") final Integer id) {
+        orderService.deleteOrder(id);
+        return ResponseEntity.noContent()
+                .build();
     }
 }

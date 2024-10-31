@@ -9,6 +9,7 @@ import java.util.Objects;
 public class AddressEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -29,6 +30,10 @@ public class AddressEntity {
     private UserEntity user;
 
     public AddressEntity() {
+    }
+
+    public AddressEntity(Integer id) {
+        this.id = id;
     }
 
     public AddressEntity(String street, String city, String country, String zipCode, UserEntity user) {

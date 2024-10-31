@@ -9,6 +9,7 @@ import java.util.Objects;
 public class OrderProductEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -24,6 +25,12 @@ public class OrderProductEntity {
     private Integer quantity;
 
     public OrderProductEntity() {
+    }
+
+    public OrderProductEntity(OrderEntity order, ProductEntity product, Integer quantity) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
     }
 
     public OrderProductEntity(Integer id, OrderEntity order, ProductEntity product, Integer quantity) {
