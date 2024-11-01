@@ -67,7 +67,7 @@ public class OrderController {
 
     @Operation(summary = "Retrieve orders by order ID", description = "Returns a the details of a specific order")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "List of orders for the user retrieved successfully",
+            @ApiResponse(responseCode = "200", description = "Order for the ID retrieved successfully",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = OrderResponse.class))),
             @ApiResponse(responseCode = "404", description = "Order not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiException.class)))
