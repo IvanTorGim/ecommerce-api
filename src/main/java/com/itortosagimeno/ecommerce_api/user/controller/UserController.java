@@ -20,6 +20,7 @@ import java.util.List;
 
 @Tag(name = "Users", description = "Endpoints for users operations")
 @RestController
+@RequestMapping("/v1")
 public class UserController {
 
     private final UserService userService;

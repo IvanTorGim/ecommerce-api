@@ -20,6 +20,7 @@ import java.util.List;
 
 @Tag(name = "Products", description = "Endpoints for products operations")
 @RestController
+@RequestMapping("/v1")
 public class ProductController {
 
     private final ProductService productService;

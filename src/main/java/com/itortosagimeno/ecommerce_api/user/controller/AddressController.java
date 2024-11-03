@@ -20,6 +20,7 @@ import java.util.List;
 
 @Tag(name = "Address", description = "Endpoints for address operations")
 @RestController
+@RequestMapping("/v1")
 public class AddressController {
 
     private final AddressService addressService;

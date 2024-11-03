@@ -19,6 +19,7 @@ import java.util.List;
 
 @Tag(name = "Orders", description = "Endpoints for orders operations")
 @RestController
+@RequestMapping("/v1")
 public class OrderController {
 
     private final OrderService orderService;
