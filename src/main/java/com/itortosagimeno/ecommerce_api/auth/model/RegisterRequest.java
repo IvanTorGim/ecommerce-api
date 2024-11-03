@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
-@Schema(description = "Request body for registering a new user, including name, email, password, and role.")
+@Schema(description = "Request DTO for registering a new user, including name, email, password, and role.")
 public record RegisterRequest(
         @NotBlank
         @Schema(description = "User's full name", example = "John Doe", requiredMode = REQUIRED)
