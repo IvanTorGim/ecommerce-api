@@ -36,7 +36,7 @@ import org.springframework.http.HttpHeaders;
                 ),
                 @Server(
                         description = "PROD SERVER",
-                        url = ""
+                        url = "http://52.55.179.15:8080"
                 )
         },
         security = @SecurityRequirement(name = "Security token")
