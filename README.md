@@ -11,7 +11,7 @@ different levels of access based on user roles.
 
 The API is deployed on AWS and accessible through the following URL:
 
-[Swagger UI Documentation](http://52.55.179.15:8080/swagger-ui/index.html)
+[Swagger UI Documentation](http://52.47.147.31:8080/swagger-ui/index.html)
 
 This link provides a user-friendly interface to explore available endpoints, methods, parameters, and responses. The
 documentation includes examples, making it easier for developers to understand how to interact with the API.
