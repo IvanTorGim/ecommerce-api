@@ -31,13 +31,14 @@ import org.springframework.http.HttpHeaders;
         ),
         servers = {
                 @Server(
-                        description = "DEV SERVER",
-                        url = "http://localhost:8080"
+                        description = "PROD SERVER",
+                        url = "http://52.47.175.74:8080"
                 ),
                 @Server(
-                        description = "PROD SERVER",
-                        url = "http://52.55.179.15:8080"
+                        description = "DEV SERVER",
+                        url = "http://localhost:8080"
                 )
+
         },
         security = @SecurityRequirement(name = "Security token")
 )
